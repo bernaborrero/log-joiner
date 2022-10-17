@@ -52,7 +52,7 @@ def unzip_file(file_in, file_out):
 try:
     arg = sys.argv[1]
 except IndexError:
-    raise SystemExit(f"Usage: {sys.argv[0]} <hwbb_epc,hwbb_stock...>")
+    raise SystemExit(f"Usage: {sys.argv[0]} <connection_name>")
 
 config = read_config()
 mode = validate_option(arg, config['modes'])

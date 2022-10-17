@@ -60,14 +60,6 @@ if not mode:
     raise SystemExit(f"Mode {arg} does not exist.")
 
 
-# print(mode['date_regex'])
-
-# line = '[2022-10-17 04:08:56] Epcb2b.INFO: End Import EPC Product [] []'
-# result = re.search(r'{}'.format(mode['date_regex']), line)
-# print(result.groups(1)[0])
-
-#exit()
-
 # Iterate through connections to download logs
 for conn in mode['ssh_connections']:
     with paramiko.SSHClient() as client:

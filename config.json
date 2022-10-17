@@ -1,0 +1,25 @@
+{
+    "modes": [
+        {
+            "name": "connection_name",
+            "remote_path": "/var/log/",
+            "file_pattern": "my-logs.log*",
+            "date_regex": "^\\[(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})\\]",
+            "date_format": "%Y-%m-%d %H:%M:%S",
+            "export_path": "./output/",
+            "export_filename": "my-logs.log",
+            "ssh_connections": [
+                {
+                    "number": "1",
+                    "domain": "example.com",
+                    "username": "exampleusername"
+                },
+                {
+                    "number": "2",
+                    "domain": "example2.com",
+                    "username": "exampleusername"
+                }
+            ]
+        }
+    ]
+}

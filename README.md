@@ -17,4 +17,8 @@ This script assumes that the SSH connections will be done via a SSH key pair alr
 The `ssh_connections` key is an array that can contain multiple servers. The script will download the logs from all the defined servers.
 
 ## Use
+To execute the script:
 `python log-joiner.py <connection_name>`
+
+To display the available connections:
+`python log-joiner.py -h` or `python log-joiner.py --help`

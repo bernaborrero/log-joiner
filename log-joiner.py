@@ -98,7 +98,7 @@ if not local_files:
     raise SystemExit('No logs found in remotes with path {}{}'.format(mode['remote_path'], mode['file_pattern']))
 
 for local_file in local_files:
-    with open(mode['export_path'] + local_file, 'r') as f:
+    with open(mode['export_path'] + local_file, 'r', encoding='utf8') as f:
         contents.extend(f.readlines())
     os.unlink(mode['export_path'] + local_file)
 
@@ -108,9 +108,15 @@ chunker = log_chunker(contents)
 ordered = sorted(chunker, key=key_from_date)
 
 # Write to output file
-with open(mode['export_path'] + mode['export_filename'], 'w') as f:
+print('Writing to output file: {}{}'.format(mode['export_path'], mode['export_filename']))
+log_lines_counter = 0
+with open(mode['export_path'] + mode['export_filename'], 'w', encoding='utf8') as f:
     for line in ordered:
         for item in line:
             f.write(item)
+            log_lines_counter = log_lines_counter + 1
 
-print('Done! Output file: {}{}'.format(mode['export_path'], mode['export_filename']))
+file_size = os.stat(mode['export_path'] + mode['export_filename'])
+file_size_mb = file_size.st_size / (1024 * 1024)
+print('Done!')
+print('Stats:\n-----------------------\nLog lines saved: {}\nFile size: {} MB'.format(log_lines_counter, file_size_mb))

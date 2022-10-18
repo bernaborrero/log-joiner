@@ -55,6 +55,12 @@ except IndexError:
     raise SystemExit(f"Usage: {sys.argv[0]} <connection_name>")
 
 config = read_config()
+
+if arg in ['--help', '-h']:
+    mode_names = [m['name'] for m in config['modes']]
+    print(f"Usage: {sys.argv[0]} <connection_name>")
+    raise SystemExit('Available modes: {}'.format(mode_names))
+
 mode = validate_option(arg, config['modes'])
 if not mode:
     raise SystemExit(f"Mode {arg} does not exist.")
